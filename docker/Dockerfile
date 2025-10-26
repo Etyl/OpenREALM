@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-devel-ubuntu18.04
+FROM nvidia/cudagl:11.4.2-devel-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -16,11 +16,11 @@ RUN apt-get update && apt-get install -y \
     sudo \
     apt-utils
 
-RUN cd / && wget https://raw.githubusercontent.com/laxnpander/OpenREALM/dev/tools/install_opencv.sh
+RUN cd / && wget https://raw.githubusercontent.com/Etyl/OpenREALM/dev/tools/install_opencv.sh
 
 RUN cd / && sed -i 's/sudo //g' install_opencv.sh && bash install_opencv.sh && cd ~ && rm -rf *
 
-RUN wget https://raw.githubusercontent.com/laxnpander/OpenREALM/dev/tools/install_deps.sh
+RUN wget https://raw.githubusercontent.com/Etyl/OpenREALM/dev/tools/install_deps.sh
 
 RUN cd / && sed -i 's/sudo //g' install_deps.sh && apt-get update && export DEBIAN_FRONTEND=noninteractive && \
 	bash install_deps.sh && rm -rf /var/lib/apt/lists/*
@@ -28,7 +28,7 @@ RUN cd / && sed -i 's/sudo //g' install_deps.sh && apt-get update && export DEBI
 # Finally install OpenREALM Librararies
 RUN set -ex \
     && cd ~ && mkdir OpenREALM && cd OpenREALM \
-    && git clone https://github.com/laxnpander/OpenREALM.git \
+    && git clone https://github.com/Etyl/OpenREALM.git \
     && cd OpenREALM && OPEN_REALM_DIR=$(pwd) \
     && git submodule init && git submodule update \
     && cd $OPEN_REALM_DIR && mkdir build && cd build && cmake -DTESTS_ENABLED=ON -DWITH_PCL=ON .. \
@@ -48,7 +48,7 @@ RUN set -ex \
 RUN set -ex \
     && cd / && mkdir -p catkin_ws/src \
     && cd catkin_ws/src \
-    && git clone https://github.com/laxnpander/OpenREALM_ROS1_Bridge.git
+    && git clone https://github.com/Etyl/OpenREALM_ROS1_Bridge.git
 
 # Set workdir
 WORKDIR /catkin_ws
@@ -66,7 +66,7 @@ RUN apt-get install -yq --no-install-recommends ros-melodic-rosbridge-suite
 RUN set -ex \
     && echo "source /opt/ros/melodic/setup.bash" >> /root/.bashrc \
     && echo "source /catkin_ws/devel/setup.bash" >> /root/.bashrc \
-    && echo 'export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH' >> /root/.bashrc 
+    && echo 'export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH' >> /root/.bashrc
     # && sed --in-place --expression \
     # '$isource "/catkin_ws/devel/setup.bash"' \
     # /ros_entrypoint.sh

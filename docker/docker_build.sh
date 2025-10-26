@@ -1,1 +1,1 @@
-docker build -t openrealm:latest .
+sudo docker build -t openrealm:latest .
