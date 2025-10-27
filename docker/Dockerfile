@@ -2,8 +2,6 @@ FROM nvidia/cudagl:11.4.2-devel-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG DEBIAN_FRONTEND=noninteractive
-
 # Basic deps
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -12,9 +10,16 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     unzip \
-    cmake \
     sudo \
-    apt-utils
+    apt-utils \
+    gnupg \
+    && wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc \
+        | gpg --dearmor -o /etc/apt/trusted.gpg.d/kitware.gpg \
+    && echo "deb https://apt.kitware.com/ubuntu/ bionic main" \
+        > /etc/apt/sources.list.d/kitware.list \
+    && apt-get update \
+    && apt-get install -y cmake \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN cd / && wget https://raw.githubusercontent.com/Etyl/OpenREALM/refs/heads/master/tools/install_opencv.sh
 

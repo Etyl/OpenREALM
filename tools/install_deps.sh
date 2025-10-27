@@ -168,6 +168,7 @@ sudo make install
 # FBoW
 cd ~/ && mkdir fbow && cd fbow
 git clone https://github.com/rmsalinas/fbow.git
+cd fbow
 mkdir -p build
 cd build
 cmake ..
