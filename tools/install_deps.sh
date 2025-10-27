@@ -165,19 +165,9 @@ cmake ..
 make -j4
 sudo make install
 
-# DBoW2
-cd ~ && mkdir fbow && cd fbow
-git clone https://github.com/shinsumicco/FBoW.git
-cd FBoW
-mkdir -p build
-cd build
-cmake ..
-make -j4
-sudo make install
-
 # OpenVSLAM
 cd ~ && mkdir openvslam && cd openvslam
-git clone https://github.com/laxnpander/openvslam.git
+git clone https://github.com/DuanHongxuan/openvslam.git
 cd openvslam
 git submodule init && git submodule update
 mkdir build && cd build
