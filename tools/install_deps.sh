@@ -165,10 +165,10 @@ cmake ..
 make -j4
 sudo make install
 
-# FBoW
-cd ~/ && mkdir fbow && cd fbow
-git clone https://github.com/rmsalinas/fbow.git
-cd fbow
+# DBoW2
+cd ~ && mkdir dbow2 && cd dbow2
+git clone https://github.com/dorian3d/DBoW2.git
+cd DBoW2
 mkdir -p build
 cd build
 cmake ..
@@ -188,6 +188,7 @@ cmake \
     -DUSE_STACK_TRACE_LOGGER=ON \
     -DBUILD_TESTS=ON \
     -DBUILD_EXAMPLES=ON \
+    -USE_DBOW2=ON \
     ..
 make -j4
 sudo make install
