@@ -81,6 +81,9 @@ sudo apt-get install -y -q exiv2 libexiv2-dev apt-utils
 sudo apt-get install -y -q libglew-dev libxkbcommon-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev
 sudo apt-get install -y -q libxi-dev libxmu-dev libxmu-headers x11proto-input-dev
 
+# Fbow dependencies
+apt-get install -y libboost-all-dev
+
 # g2o dependencies
 sudo apt-get install -y libatlas-base-dev libsuitesparse-dev
 
@@ -158,6 +161,15 @@ cd ~ && mkdir Pangolin && cd Pangolin
 git clone -b v0.6 https://github.com/stevenlovegrove/Pangolin.git
 cd Pangolin
 mkdir build && cd build
+cmake ..
+make -j4
+sudo make install
+
+# FBoW
+cd ~/ && mkdir fbow && cd fbow
+git clone https://github.com/rmsalinas/fbow.git
+mkdir -p build
+cd build
 cmake ..
 make -j4
 sudo make install
