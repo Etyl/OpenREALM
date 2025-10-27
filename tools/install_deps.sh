@@ -167,8 +167,8 @@ sudo make install
 
 # DBoW2
 cd ~ && mkdir fbow && cd fbow
-git clone https://github.com/rmsalinas/fbow.git
-cd fbow
+git clone https://github.com/shinsumicco/FBoW.git
+cd FBoW
 mkdir -p build
 cd build
 cmake ..
