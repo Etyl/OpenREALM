@@ -53,13 +53,13 @@ RUN set -ex \
 RUN set -ex \
     && cd / && mkdir -p catkin_ws/src \
     && cd catkin_ws/src \
-    && git clone https://github.com/Etyl/OpenREALM_ROS1_Bridge.git
+    && git clone https://github.com/laxnpander/OpenREALM_ROS1_Bridge.git
 
 # Set workdir
 WORKDIR /catkin_ws
 
 # Clone rviz_satellite for rviz plugins
-RUN set -ex && cd ./src && git clone https://github.com/gareth-cross/rviz_satellite.git
+# RUN set -ex && cd ./src && git clone https://github.com/gareth-cross/rviz_satellite.git
 
 # Build catkin workspace
 RUN set -ex && . /opt/ros/melodic/setup.sh && catkin_make -DCMAKE_BUILD_TYPE=Release

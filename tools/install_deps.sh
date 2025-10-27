@@ -165,6 +165,14 @@ cmake ..
 make -j4
 sudo make install
 
+# FBoW
+cd ~/ && mkdir fbow && cd fbow
+git clone https://github.com/stella-cv/FBoW.git
+cd FBoW && mkdir build && cd build
+cmake .. -DBUILD_TESTS=ON -DBUILD_UTILS=ON
+make -j4
+sudo make install
+
 # OpenVSLAM
 cd ~ && mkdir openvslam && cd openvslam
 git clone https://github.com/DuanHongxuan/openvslam.git
